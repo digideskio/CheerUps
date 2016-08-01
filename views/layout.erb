@@ -8,7 +8,7 @@
 <body>
   <header>
     <% if logged_in?%>
-     <h1>Hi <%= current_user.name %></h1>
+     <h3>Hi <%= current_user.name %></h3>
         <form action="/session" method="post">
         <input type="hidden" name="_method" value="delete">
         <button>log out</button>
@@ -16,17 +16,23 @@
 
 <%else%>
 
-  <form action="/session/new" method="get">
+  <form action="/session" method="post">
+    <label for="email">email</label>
+    <input type="text" name="email">
+
+    <label for="password">password</label>
+    <input type="password" name="password">
+
     <button>login</button>
   </form>
 
-  <form action="/session/register" method="get">
+  <form action="/session/new" method="get">
     <button>Become a member</button>
   </form>
 
   <%end%>
   </header>
-
+  <div id="wrapper">
   <%= yield %>
-
+</div>
 </body>

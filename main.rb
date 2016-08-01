@@ -27,11 +27,12 @@ helpers do
 end
 
 get '/' do
+  @cheerup = Cheerup.all
   erb :index
 end
 
 get '/session/new' do
-  erb :login
+  erb :register
 end
 
 post '/session' do
@@ -40,8 +41,16 @@ post '/session' do
   if user && user.authenticate(params[:password])
     session[:user_id] = user.id
     redirect to '/'
-  else
-    erb:login
+  elsif user
+    redirect '/'
+  elsif !user
+    user = User.new
+    user.name = params[:name]
+    user.email = params[:email]
+    user.password = params[:password]
+    user.save
+    session[:user_id] = user.id
+    redirect '/'
   end
 end
 
@@ -58,6 +67,7 @@ post '/cheerup' do
   if !logged_in?
     redirect to 'session/new'
   end
+  # binding.pry
   binding.pry
   @cheerup = Cheerup.new
   @cheerup.content = params[:content]
@@ -65,23 +75,32 @@ post '/cheerup' do
   @cheerup.user_id = current_user.id
   # @cheerup.tags = params[:tag]
   @cheerup.save
+  # binding.pry
   erb :display
 end
 
 put '/addtag/:cheerup_id' do
   params[:tag]
   @cheerup = Cheerup.find(params[:cheerup_id])
-  binding.pry
+  # binding.pry
   @tag = Tag.find_by(theme: params[:tag])
   if @tag
     @cheerup.tags << @tag
   else
     @tag = Tag.new
-    @tag.theme = "params[:tag]"
+    @tag.theme = params[:tag]
     @tag.save
     @cheerup.tags << @tag
-    #apply to cheerup
     binding.pry
+    #apply to @cheerup
   end
   erb :display
+end
+
+get "/search/tag" do
+  params[:tag]
+  @tag = Tag.find_by(theme: params[:tag])
+  if @tag
+    erb :tag
+  end
 end

@@ -1,0 +1,10 @@
+<div class="tagList">
+
+  <% @tag.cheerups.each do |cheerup| %>
+    <div class="tagItem">
+      <img src="<%=cheerup["image"]%>" alt="">
+      <p><%=cheerup["content"]%></p>
+    </div>
+  <%end%>
+
+</div>

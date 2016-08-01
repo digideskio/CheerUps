@@ -1,0 +1,28 @@
+* {
+  /*margin: 0 auto;*/
+  box-sizing: border-box;
+}
+
+wrapper {
+  width: 80%;
+}
+
+.cheerupList, .tagList {
+  width: 80%;
+}
+/*
+img {
+  width: 100px;
+  height: 100px;
+}*/
+
+.cheerupItem, .tagItem {
+  /*width: 300px;
+  height: 200px;*/
+  border: 2px solid black;
+  margin: 10px;
+}
+
+img {
+  width: 40%;
+}

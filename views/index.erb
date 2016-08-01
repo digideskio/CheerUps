@@ -1,9 +1,25 @@
 <h1>Cheerups!</h1>
 
 <% if logged_in?%>
-  <!-- <a href="/dishes/new">new dish!</a> -->
   <form action="/cheerup/new">
     <input type="hidden">
     <button>Create a Cheerup!</button>
   </form>
 <%end%>
+
+<form action="/search/tag" method="get">
+  <input type="text" placeholder="Search by Tag!" name="tag">
+  <button>search</button>
+</form>
+
+
+<div class = "cheerupList">
+<% @cheerup.each do |cheerup|  %>
+  <div class="cheerupItem">
+    <h2><%=cheerup.content%></h2>
+    <img src="<%=cheerup.image%>" alt="">
+    <!-- <button><%=cheerup.tags.to_s%></button> -->
+  </div>
+<%end%>
+
+</div>
