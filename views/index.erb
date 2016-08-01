@@ -18,7 +18,9 @@
   <div class="cheerupItem">
     <h2><%=cheerup.content%></h2>
     <img src="<%=cheerup.image%>" alt="">
-    <!-- <button><%=cheerup.tags.to_s%></button> -->
+    <% cheerup.tags.each do |tag| %>
+      <a href="#"><%=tag.theme%></a>
+    <%end%>
   </div>
 <%end%>
 

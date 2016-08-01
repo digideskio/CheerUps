@@ -23,7 +23,18 @@ helpers do
   def current_user
     User.find(session[:user_id])
   end
-
+#tag test for already existing tag, if not creates it and appends to @cheerup.tags
+  def tag
+  @tag = Tag.find_by(theme: params[:tag].downcase)
+  if @tag
+    @cheerup.tags << @tag
+  else
+    @tag = Tag.new
+    @tag.theme = params[:tag].downcase
+    @tag.save
+    @cheerup.tags << @tag
+  end
+  end
 end
 
 get '/' do
@@ -67,15 +78,16 @@ post '/cheerup' do
   if !logged_in?
     redirect to 'session/new'
   end
-  # binding.pry
-  binding.pry
+
   @cheerup = Cheerup.new
   @cheerup.content = params[:content]
   @cheerup.image = params[:image]
   @cheerup.user_id = current_user.id
-  # @cheerup.tags = params[:tag]
   @cheerup.save
+  if params[:tag] != '' #if tag is an empty string, ignore it. else, tag method
+    tag #
   # binding.pry
+  end
   erb :display
 end
 
@@ -83,23 +95,23 @@ put '/addtag/:cheerup_id' do
   params[:tag]
   @cheerup = Cheerup.find(params[:cheerup_id])
   # binding.pry
-  @tag = Tag.find_by(theme: params[:tag])
-  if @tag
-    @cheerup.tags << @tag
-  else
-    @tag = Tag.new
-    @tag.theme = params[:tag]
-    @tag.save
-    @cheerup.tags << @tag
-    binding.pry
-    #apply to @cheerup
-  end
+  tag #make sure this works over below code
+  # @tag = Tag.find_by(theme: params[:tag])
+  # if @tag
+  #   @cheerup.tags << @tag
+  # else
+  #   @tag = Tag.new
+  #   @tag.theme = params[:tag]
+  #   @tag.save
+  #   @cheerup.tags << @tag
+  #   # binding.pry
+  # end
   erb :display
 end
 
 get "/search/tag" do
   params[:tag]
-  @tag = Tag.find_by(theme: params[:tag])
+  @tag = Tag.find_by(theme: params[:tag].downcase)
   if @tag
     erb :tag
   end

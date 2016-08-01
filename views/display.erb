@@ -2,23 +2,16 @@
   <img src="<%= @cheerup.image%>" alt="">
   <p><%=@cheerup.content%></p>
 
-<!-- if no tag, suggest a tag, else display tag as button -->
-  <!-- tag button  -->
 
-  <% if @cheerup.tags == [] %>
     <form action="/addtag/<%=@cheerup.id%>" method="post">
       <input type="hidden" name="_method" value="put">
 
       <input type="text" name="tag" placeholder="add a tag!">
       <button>tag it!</button>
     </form>
-  <!-- <%elsif @cheerup.tags.length == 1 %> -->
-      <!-- <button><%= @cheerup.tags.theme %></button> -->
-  <%else%>
-      <% @cheerup.tags.each do |tag|  %>
-      <button><%= tag["theme"].to_s %></button>
-      <%end%>
 
-  <%end%>
+      <% @cheerup.tags.each do |tag|  %>
+      <button><%= tag["theme"] %></button>
+      <%end%>
 
 </div>
