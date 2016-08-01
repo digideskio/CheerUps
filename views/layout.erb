@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Good Vibes</title>
+  <link rel='stylesheet' href='/stylesheets/main.css'>
+</head>
+<body>
+  <header>
+    <% if logged_in?%>
+     <h1>Hi <%= current_user.name %></h1>
+        <form action="/session" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <button>log out</button>
+    </form>
+
+<%else%>
+
+  <form action="/session/new" method="get">
+    <button>login</button>
+  </form>
+
+  <form action="/session/register" method="get">
+    <button>Become a member</button>
+  </form>
+
+  <%end%>
+  </header>
+
+  <%= yield %>
+
+</body>

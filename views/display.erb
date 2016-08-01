@@ -1,0 +1,17 @@
+<div id="displayCheerup">
+  <img src="<%= @cheerup.image%>" alt="">
+  <p><%=@cheerup.content%></p>
+
+<!-- if no tag, suggest a tag, else display tag as button -->
+  <!-- tag button  -->
+
+  <% if @cheerup.tags == [] %>
+    <form action="/addtag/<%=@cheerup.id%>" method="post">
+      <input type="hidden" name="_method" value="put">
+
+      <input type="text" name="tag" placeholder="add a tag!">
+      <button>tag it!</button>
+    </form>
+    <%end%>
+
+</div>
