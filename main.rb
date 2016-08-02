@@ -97,7 +97,7 @@ put '/addtag/:cheerup_id' do
   erb :display
 end
 
-get '/search/tag/' do
+get '/search/tag' do
   params[:tag]
   @tag = Tag.find_by(theme: params[:tag].downcase)
   if @tag
