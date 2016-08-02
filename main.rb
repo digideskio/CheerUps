@@ -24,6 +24,7 @@ helpers do
     User.find(session[:user_id])
   end
 #tag test for already existing tag, if not creates it and appends to @cheerup.tags
+
   def tag
   @tag = Tag.find_by(theme: params[:tag].downcase)
   if @tag
@@ -93,7 +94,11 @@ end
 put '/addtag/:cheerup_id' do
   params[:tag]
   @cheerup = Cheerup.find(params[:cheerup_id])
-  tag #make sure this works over below code
+  #Prohibits each cheerup from duplicate tags
+  if @cheerup.tags.find {|tag| tag[:theme] == params[:tag].downcase} !=nil
+  else
+    tag 
+  end
   erb :display
 end
 

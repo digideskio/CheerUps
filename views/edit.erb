@@ -1,14 +1,16 @@
 <h1>it works </h1>
 
-<p><%=@cheerup.id%></p>
+<!-- <p><%=@cheerup.id%></p> -->
 
 <form action="/cheerup/<%=@cheerup.id%>" method="post">
   <input type="hidden" name="_method" value="put">
-  <label for="">inspirational words</label>
-  <input type="text" name="content" value="<%= @cheerup.content%>">
+  <label for="">Change it up</label>
 
-  <label for="">image</label>
-  <input type="text" name="image" value="<%= @cheerup.image%>">
+  <% if @cheerup.content.present?%>
+    <input type="text" name="content" value="<%= @cheerup.content%>">
+  <% else %>
+    <input type="text" name="image" value="<%= @cheerup.image%>">
+  <%end%>
 
   <button>update</button>
 

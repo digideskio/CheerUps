@@ -26,7 +26,7 @@
     <%else %>
       <h2><%=cheerup.content%></h2>
     <% cheerup.tags.each do |tag| %>
-      <a href='/search/tag'><%=tag.theme%></a>
+      <a href="/search/tag?tag=<%=tag.theme%>"><%=tag.theme%></a>
     <%end%>
     <%end%>
   </div>
