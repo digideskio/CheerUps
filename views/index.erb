@@ -5,13 +5,14 @@
     <input type="hidden">
     <button>Create a Cheerup!</button>
   </form>
-  <form action="/cheerup/#{current_user.id}">
+
+  <form action="/mycheerups/">
     <input type="hidden">
     <button>My Cheerups!</button>
   </form>
 <%end%>
 
-<form action="/search/tag" method="get">
+<form action="/search/tag/" method="get">
   <input type="text" placeholder="Search by Tag!" name="tag">
   <button>search</button>
 </form>
@@ -25,7 +26,7 @@
     <%else %>
       <h2><%=cheerup.content%></h2>
     <% cheerup.tags.each do |tag| %>
-      <a href="#"><%=tag.theme%></a>
+      <a href='/search/tag'><%=tag.theme%></a>
     <%end%>
     <%end%>
   </div>

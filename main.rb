@@ -97,7 +97,7 @@ put '/addtag/:cheerup_id' do
   erb :display
 end
 
-get "/search/tag" do
+get '/search/tag/' do
   params[:tag]
   @tag = Tag.find_by(theme: params[:tag].downcase)
   if @tag
@@ -107,6 +107,34 @@ get "/search/tag" do
   end
 end
 
-get '/cheerup/:user_id' do
+get '/mycheerups/' do
+  @user = current_user
   erb :my_cheerups
+end
+
+get "/cheerup/edit/:id" do
+  @cheerup = Cheerup.find_by(id: params[:id])
+  erb :edit
+end
+
+put "/cheerup/:id" do
+  @cheerup = Cheerup.find_by(id: params[:id])
+  @cheerup.content = params[:content]
+  @cheerup.image = params[:image]
+  @cheerup.save
+  redirect '/mycheerups/'
+end
+
+delete "/cheerup/:id" do
+  @cheerup = Cheerup.find_by(id: params[:id])
+  @cheerup.destroy
+  redirect '/mycheerups/'
+end
+
+get "/cheerup/new/text" do
+  erb :cheerup_text
+end
+
+get "/cheerup/new/image" do
+  erb :cheerup_image
 end

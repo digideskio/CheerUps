@@ -1,16 +1,19 @@
 <h2>create a cheerup!</h2>
 
-<form action="/cheerup" method="post">
-  <label for="content">Write a Cheerup...</label>
-  <input type="text" name="content">
+<p>Instructions: You can make a cheerup one of two ways: by sharing your own unique message or sharing an image.  Which way are you leaning?</p>
 
-  <label for="image">..or a picture a worth a 1000 words</label>
-  <input type="text" name="image">
 
-  <label for="tag">Tag it!</label>
-  <input type="text" name="tag">
+<form action="/cheerup/new/text">
 
-  <button>Create</button>
+  <input type="hidden">
+  <button>I'll use my words </button>
 
+</form>
+
+
+<form action="/cheerup/new/image">
+
+  <input type="hidden">
+  <button>Picture is worth a thousand words </button>
 
 </form>

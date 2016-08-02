@@ -1,7 +1,10 @@
 <div id="displayCheerup">
-  <img src="<%= @cheerup.image%>" alt="">
-  <p><%=@cheerup.content%></p>
 
+  <%if @cheerup.content.present?%>
+    <h2><%=@cheerup.content%></h2>
+  <%else %>
+    <img src="<%=@cheerup.image%>" alt="">
+  <%end%>
 
     <form action="/addtag/<%=@cheerup.id%>" method="post">
       <input type="hidden" name="_method" value="put">
@@ -15,3 +18,7 @@
       <%end%>
 
 </div>
+
+<form action="/">
+  <button>Back to homepage</button>
+</form>

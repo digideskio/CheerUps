@@ -1,0 +1,22 @@
+
+<h1><%=@user.name%>'s Cheerups!</h1>
+  <% @user.cheerups.shuffle.each do |cheerup| %>
+    <div class="cheerupItem">
+      <form action="/cheerup/edit/<%=cheerup.id%>" method="get">
+        <button>edit</button>
+      </form>
+      
+      <form action="/cheerup/<%=cheerup.id%>" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <button>delete</button>
+      </form>
+      <%if cheerup.content == ''%>
+        <img src="<%=cheerup.image%>" alt="">
+      <%else %>
+        <h2><%=cheerup.content%></h2>
+      <% cheerup.tags.each do |tag| %>
+        <a href="/search/tag"><%=tag.theme%></a>
+      <%end%>
+      <%end%>
+    </div>
+  <%end%>
