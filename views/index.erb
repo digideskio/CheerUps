@@ -5,6 +5,10 @@
     <input type="hidden">
     <button>Create a Cheerup!</button>
   </form>
+  <form action="/cheerup/#{current_user.id}">
+    <input type="hidden">
+    <button>My Cheerups!</button>
+  </form>
 <%end%>
 
 <form action="/search/tag" method="get">
@@ -16,10 +20,13 @@
 <div class = "cheerupList">
 <% @cheerup.each do |cheerup|  %>
   <div class="cheerupItem">
-    <h2><%=cheerup.content%></h2>
-    <img src="<%=cheerup.image%>" alt="">
+    <%if cheerup.content == ''%>
+      <img src="<%=cheerup.image%>" alt="">
+    <%else %>
+      <h2><%=cheerup.content%></h2>
     <% cheerup.tags.each do |tag| %>
       <a href="#"><%=tag.theme%></a>
+    <%end%>
     <%end%>
   </div>
 <%end%>

@@ -38,7 +38,7 @@ helpers do
 end
 
 get '/' do
-  @cheerup = Cheerup.all
+  @cheerup = Cheerup.all.shuffle
   erb :index
 end
 
@@ -78,7 +78,6 @@ post '/cheerup' do
   if !logged_in?
     redirect to 'session/new'
   end
-
   @cheerup = Cheerup.new
   @cheerup.content = params[:content]
   @cheerup.image = params[:image]
@@ -94,18 +93,7 @@ end
 put '/addtag/:cheerup_id' do
   params[:tag]
   @cheerup = Cheerup.find(params[:cheerup_id])
-  # binding.pry
   tag #make sure this works over below code
-  # @tag = Tag.find_by(theme: params[:tag])
-  # if @tag
-  #   @cheerup.tags << @tag
-  # else
-  #   @tag = Tag.new
-  #   @tag.theme = params[:tag]
-  #   @tag.save
-  #   @cheerup.tags << @tag
-  #   # binding.pry
-  # end
   erb :display
 end
 
@@ -114,5 +102,11 @@ get "/search/tag" do
   @tag = Tag.find_by(theme: params[:tag].downcase)
   if @tag
     erb :tag
+  else
+    erb :error
   end
+end
+
+get '/cheerup/:user_id' do
+  erb :my_cheerups
 end

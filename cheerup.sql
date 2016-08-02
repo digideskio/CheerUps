@@ -26,3 +26,10 @@ CREATE TABLE cheerupstaggings(
   cheerup_id INTEGER,
   tag_id INTEGER
 );
+
+CREATE TABLE likes(
+  id  SERIAL4 PRIMARY KEY,
+  like_type INTEGER,
+  user_id INTEGER,
+  cheerup_id INTEGER,
+);
