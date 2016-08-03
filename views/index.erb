@@ -10,6 +10,12 @@
     <input type="hidden">
     <button>My Cheerups!</button>
   </form>
+
+  <form action="/mylikes/">
+    <input type="hidden">
+    <button>My Liked Cheerups!</button>
+  </form>
+
 <%end%>
 
 <form action="/search/tag" method="get">
@@ -21,14 +27,25 @@
 <div class = "cheerupList">
 <% @cheerup.each do |cheerup|  %>
   <div class="cheerupItem">
-    <%if cheerup.content == ''%>
+    <%if cheerup.content == '' || cheerup.content == nil%>
       <img src="<%=cheerup.image%>" alt="">
     <%else %>
-      <h2><%=cheerup.content%></h2>
+      <div class="wordCheerup">
+        <h2><%=cheerup.content%></h2>
+      </div>
+    <%end%>
     <% cheerup.tags.each do |tag| %>
-      <a href="/search/tag?tag=<%=tag.theme%>"><%=tag.theme%></a>
+      <div class="cheerupTag">
+        <a href="/search/tag?tag=<%=tag.theme%>"><%=tag.theme%></a>
+      </div>
     <%end%>
-    <%end%>
+    <form action="/cheerup/<%=cheerup.id%>/likes" method = "post">
+         <input type="hidden" name ="_method" value = 'put'>
+         <h5><%= cheerup.likes.count %></h5>
+
+         <button onclick = "this.style.backgroundColor='blue' ">Like</button>
+       </form>
+
   </div>
 <%end%>
 

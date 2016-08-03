@@ -1,0 +1,20 @@
+<h1>My Favorite Cheerups</h1>
+
+<%@user.likes.each do |like|  %>
+
+<% cheerup = Cheerup.find_by(id: like.cheerup_id) %>
+
+  <% if cheerup %>
+     <div>
+    <% if cheerup.image == '' || cheerup.image == nil %>
+      <h2><%=cheerup.content%></h2>
+    <%elsif cheerup.content == '' || cheerup.content == nil%>
+      <img src="<%= cheerup.image %>"></img>
+    <%end%>
+    <% cheerup.tags.each do |tag| %>
+      <a href="/search/tag?tag=<%=tag.theme%>"><%=tag.theme%></a>
+    <%end%>
+    </div>
+
+  <%end%>
+<%end%>

@@ -4,6 +4,8 @@ class Cheerup < ActiveRecord::Base
   # validates :image, presence: true, allow_Blank: false,
   validate :content_or_image
   belongs_to :user
+  has_many :likes
+  has_many :users, through: :likes
   has_many :cheerup_tags
   has_many :tags, :through => :cheerup_tags
 
