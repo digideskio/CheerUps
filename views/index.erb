@@ -1,51 +1,37 @@
-<h1>Cheerups!</h1>
 
-<% if logged_in?%>
-  <form action="/cheerup/new">
-    <input type="hidden">
-    <button>Create a Cheerup!</button>
-  </form>
-
-  <form action="/mycheerups/">
-    <input type="hidden">
-    <button>My Cheerups!</button>
-  </form>
-
-  <form action="/mylikes/">
-    <input type="hidden">
-    <button>My Liked Cheerups!</button>
-  </form>
-
-<%end%>
-
-<form action="/search/tag" method="get">
+<!-- <form action="/search/tag" method="get">
   <input type="text" placeholder="Search by Tag!" name="tag">
   <button>search</button>
-</form>
+</form> -->
 
 
 <div class = "cheerupList">
 <% @cheerup.each do |cheerup|  %>
   <div class="cheerupItem">
     <%if cheerup.content == '' || cheerup.content == nil%>
-      <img src="<%=cheerup.image%>" alt="">
+      <div class="cheerupContent">
+        <img src="<%=cheerup.image%>" alt="">
+      </div>
     <%else %>
-      <div class="wordCheerup">
+      <div class="cheerupContent">
         <h2><%=cheerup.content%></h2>
       </div>
     <%end%>
-    <% cheerup.tags.each do |tag| %>
+    <div class="cheerupDeets">
       <div class="cheerupTag">
-        <a href="/search/tag?tag=<%=tag.theme%>"><%=tag.theme%></a>
+        <% cheerup.tags.each do |tag| %>
+          <a href="/search/tag?tag=<%=tag.theme%>"><i class="fa fa-tags" aria-hidden="true"></i><%=tag.theme%></a>
+        <%end%>
       </div>
-    <%end%>
-    <form action="/cheerup/<%=cheerup.id%>/likes" method = "post">
-         <input type="hidden" name ="_method" value = 'put'>
-         <h5><%= cheerup.likes.count %></h5>
+      <div class="cheerupLike">
+      <form action="/cheerup/<%=cheerup.id%>/likes" method = "post">
+           <input type="hidden" name ="_method" value = 'put'>
+           <h5>💚 <%= cheerup.likes.count %></h5>
 
-         <button onclick = "this.style.backgroundColor='blue' ">Like</button>
-       </form>
-
+           <button onclick = "this.style.backgroundColor='blue' ">Like</button>
+         </form>
+      </div>
+  </div>
   </div>
 <%end%>
 

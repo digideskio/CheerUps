@@ -1,20 +1,34 @@
 <h1>My Favorite Cheerups</h1>
 
-<%@user.likes.each do |like|  %>
-
-<% cheerup = Cheerup.find_by(id: like.cheerup_id) %>
-
-  <% if cheerup %>
-     <div>
-    <% if cheerup.image == '' || cheerup.image == nil %>
-      <h2><%=cheerup.content%></h2>
-    <%elsif cheerup.content == '' || cheerup.content == nil%>
-      <img src="<%= cheerup.image %>"></img>
-    <%end%>
-    <% cheerup.tags.each do |tag| %>
-      <a href="/search/tag?tag=<%=tag.theme%>"><%=tag.theme%></a>
+<div class="cheerupList">
+  <%@user.likes.each do |like|  %>
+    <% cheerup = Cheerup.find_by(id: like.cheerup_id) %>
+    <% if cheerup %>
+      <div class="cheerupItem">
+        <% if cheerup.image == '' || cheerup.image == nil %>
+          <div class="cheerupContent">
+            <h2><%=cheerup.content%></h2>
+          </div>
+        <% elsif cheerup.content == '' || cheerup.content == nil%>
+          <div class="cheerupContent">
+            <img src="<%= cheerup.image %>"></img>
+        </div>
+      <% end %>
+      <div class="cheerupDeets">
+        <div class="cheerupTag">
+        <% cheerup.tags.each do |tag| %>
+          <a href="/search/tag?tag=<%=tag.theme%>"><i class="fa fa-tags" aria-hidden="true"></i><%=tag.theme%></a>
+        <%end%>
+        </div>
+        <div class="cheerupLike">
+          <form action="/cheerup/<%=cheerup.id%>/likes" method = "post">
+            <input type="hidden" name ="_method" value = 'put'>
+            <h5>💚 <%= cheerup.likes.count %></h5>
+            <button onclick = "this.style.backgroundColor='blue' ">Like</button>
+          </form>
+        </div>
+      </div>
     <%end%>
     </div>
-
   <%end%>
-<%end%>
+</div>

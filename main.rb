@@ -49,14 +49,21 @@ get '/session/new' do
 end
 
 post '/session' do
-  # binding.pry
   user = User.find_by(email: params[:email])
   if user && user.authenticate(params[:password])
     session[:user_id] = user.id
     redirect to '/'
-  elsif user
+  else user
     redirect '/'
-  elsif !user
+# error message?
+  end
+end
+
+post '/session/register' do
+  user = User.find_by(email: params[:email])
+  if user
+    return 'this email is already attached to an account'
+  else
     user = User.new
     user.name = params[:name]
     user.email = params[:email]

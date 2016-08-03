@@ -29,7 +29,6 @@ CREATE TABLE cheerupstaggings(
 
 CREATE TABLE likes(
   id  SERIAL4 PRIMARY KEY,
-  like_type INTEGER,
   user_id INTEGER,
-  cheerup_id INTEGER,
+  cheerup_id INTEGER
 );

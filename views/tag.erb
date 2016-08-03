@@ -1,11 +1,26 @@
-<div class="tagList">
-
 <h1><%=@tag.theme%></h1>
+
+<div class="tagList">
   <% @tag.cheerups.each do |cheerup| %>
     <div class="tagItem">
-      <img src="<%=cheerup["image"]%>" alt="">
-      <p><%=cheerup["content"]%></p>
+      <%if cheerup.content == '' || cheerup.content == nil%>
+        <div class="cheerupContent">
+          <img src="<%=cheerup["image"]%>" alt="">
+        </div>
+      <%else%>
+        <div class="cheerupContent">
+          <h2><%=cheerup["content"]%></h2>
+        </div>
+      <%end%>
+      <div class="cheerupLike">
+        <form action="/cheerup/<%=cheerup.id%>/likes" method = "post">
+           <input type="hidden" name ="_method" value = 'put'>
+           <h5>💚 <%= cheerup.likes.count %></h5>
+
+           <button onclick = "this.style.backgroundColor='blue' ">Like</button>
+         </form>
+      </div>
+
     </div>
   <%end%>
-
 </div>

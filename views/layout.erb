@@ -4,35 +4,53 @@
   <meta charset="UTF-8">
   <title>Good Vibes</title>
   <link rel='stylesheet' href='/stylesheets/main.css'>
+  <script src="https://use.fontawesome.com/faed1c6666.js"></script>
+  <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 </head>
 <body>
   <header>
-    <% if logged_in?%>
-     <h3>Hi <%= current_user.name %></h3>
-        <form action="/session" method="post">
-        <input type="hidden" name="_method" value="delete">
-        <button>log out</button>
-    </form>
-
-<%else%>
-
-  <form action="/session" method="post">
-    <label for="email">email</label>
-    <input type="text" name="email">
-
-    <label for="password">password</label>
-    <input type="password" name="password">
-
-    <button>login</button>
-  </form>
-
-  <form action="/session/new" method="get">
-    <button>Become a member</button>
-  </form>
-
-  <%end%>
+    <h1>CheerUps!</h1>
+    <img src="https://pbs.twimg.com/profile_images/1854751598/happy_logo_400x400.png" alt="">
   </header>
+    <% if logged_in?%>
+       <nav>
+         <h3>Hi, <%= current_user.name %>!</h3>
+          <form action="/session" method="post">
+          <input type="hidden" name="_method" value="delete">
+          <button>log out</button>
+      </form>
+        <form action="/cheerup/new">
+          <input type="hidden">
+          <button>Create a Cheerup!</button>
+        </form>
+
+        <form action="/mycheerups/">
+          <input type="hidden">
+          <button>My Cheerups!</button>
+        </form>
+
+        <form action="/mylikes/">
+          <input type="hidden">
+          <button>💚 My Liked Cheerups!</button>
+        </form>
+        <form id ="searchTag" action="/search/tag" method="get">
+          <input type="text" placeholder="Search by Tag!" name="tag">
+          <button>search</button>
+        </form>
+      </nav>
+    <%else%>
+      <form action="/session" method="post">
+        <label for="email">email</label>
+        <input type="text" name="email">
+        <label for="password">password</label>
+        <input type="password" name="password">
+        <button>login</button>
+      </form>
+      <form action="/session/new" method="get">
+        <button>Become a member</button>
+      </form>
+    <%end%>
   <div id="wrapper">
-  <%= yield %>
-</div>
+    <%= yield %>
+  </div>
 </body>
