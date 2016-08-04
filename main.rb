@@ -186,3 +186,7 @@ end
 get '/about' do
   return erb :about
 end
+
+get '/login' do
+  return erb:login
+end

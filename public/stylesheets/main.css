@@ -21,8 +21,22 @@ body {
 header > * {
   display: inline-block;
 }
-
+#logo {
+  /*width: 15%;*/
+  margin-left: 0;
+  padding: 0;
+}
 .newCheerupForm > * {
+  display: block;
+  margin: 2% auto;
+}
+
+#loginForm input {
+  width: 20%;
+  padding: 10px;
+}
+
+#loginForm > * {
   display: block;
   margin: 2% auto;
 }
@@ -32,19 +46,32 @@ header > * {
   width: 60%;
 }
 
+h2 {
+  padding: 10%;
+  font-size: 2.5vw;
+}
+
 header {
-  text-align: left;
   /*position: fixed;
-  top:0;
+  top: 0;
   left: 0;*/
+  text-align: left;
+  padding-left: 1%;
 }
 
 .likeBtn {
   border: none;
-  /*background: rgb(70, 166, 20);*/
   background: inherit;
-  /*width: 10%;*/
-  font-size: 1em;
+  font-size: 3vw;
+  transition: all .2s ease-in-out;
+}
+
+.likeBtn:hover {
+  transform: scale(1.8);
+}
+
+.likeBtn:focus {
+  outline:0;
 }
 
 h4 {
@@ -74,7 +101,6 @@ nav form {
 
 nav ul {
   list-style: none;
-  text-align: left;
   padding-left: 0;
 }
 
@@ -85,25 +111,27 @@ nav li {
 nav button {
   background: inherit;
   border:none;
-  width: 100%;
   cursor: pointer;
-  padding: 10px 50px 10px 15px;
   -webkit-transition: all 0.3s ease-in;
   -moz-transition: all 0.3s ease-in;
   -o-transition: all 0.3s ease-in;
+  font-size: 1em;
+  transition: all .2s ease-in-out;
 }
 
 nav button:hover {
   border-left: 5px solid #000;
   padding-left: 5px;
-  background: #4D586E;
+  background: #8e9999;
   color: white;
+  transform: scale(1.1);
 }
 
 nav {
   text-align: left;
   margin: 5px;
-  background: #fff;
+  background: ##d5ffff;
+  width: 100%;
 }
 
 .cheerupList, .tagList, .displayCheerup {
@@ -144,7 +172,7 @@ nav {
   width: 60%;
 }
 
-.displayItem button, .editItem button{
+.displayItem button, .editItem button, #loginForm button {
   padding: 10px;
   background: rgb(70, 166, 20);
   border: none;
@@ -153,7 +181,7 @@ nav {
   font-size: 1em;
 }
 
-.displayItem button:hover, .editItem button:hover{
+.displayItem button:hover, .editItem button:hover, #loginForm button:hover {
   background: rgba(70, 166, 20, 0.5);
 }
 
@@ -174,7 +202,6 @@ nav {
 .cheerupItem, .tagItem {
   width: 30%;
   height: 30vw;
-  border: 2px solid black;
   margin: 10px;
   position: relative;
 }
@@ -182,7 +209,7 @@ nav {
 .cheerupContent {
   width: 100%;
   height: 100%;
-  background: #4D586E;
+  background: #8e9999;
   color: white;
 }
 
@@ -192,11 +219,11 @@ nav {
   position: absolute;
   bottom: 0;
   visibility: hidden;
-  background: rgba(77, 88, 151, .8)
+  background: rgba(95, 102, 102, .7)
 }
 
 .cheerupTag > * {
-  color: black;
+  color: white;
 }
 
 .cheerupItem:hover .cheerupDeets {
@@ -210,6 +237,7 @@ nav {
 .cheerupTag {
   position: absolute;
   bottom: 0;
+  text-align: left;
 }
 
 .cheerupButtons > *{
@@ -221,11 +249,6 @@ nav {
   position: absolute;
   top: 0;
 }
-
-/*.cheerupButtons {
-  position: absolute;
-  top: 0;
-}*/
 
 .cheerupLike {
   position: absolute;
@@ -266,4 +289,20 @@ img {
 .smallBtn:hover {
   background: rgba(70, 166, 20, 0.8);
   transform: scale(1.2);
+}
+
+
+
+@media (max-width:400px){
+#logo {
+  width: 50%;
+}
+
+nav li {
+  display:block;
+}
+
+.cheerupTag {
+  visibility:hidden;
+}
 }

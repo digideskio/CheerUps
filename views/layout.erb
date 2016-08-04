@@ -11,51 +11,52 @@
 <body>
   <header>
     <h1>CheerUps!</h1>
-    <a href="/"><img src="https://pbs.twimg.com/profile_images/1854751598/happy_logo_400x400.png" alt=""></a>
+    <a id="logo" href="/"><img src="https://pbs.twimg.com/profile_images/1854751598/happy_logo_400x400.png" alt=""></a>
+  <% if logged_in?%>
+     <nav>
+       <ul>
+        <li><h3>Hi, <%= current_user.name %>!</h3></li>
+        <li><form action="/about">
+           <button>About</button>
+        </form></li>
+        <li><form action="/session" method="post">
+          <input type="hidden" name="_method" value="delete">
+          <button>Logout</button>
+        </form></li>
+        <li><form action="/cheerup/new">
+          <input type="hidden">
+          <button>Create a CheerUp!</button>
+        </form></li>
+
+        <li><form action="/mycheerups/">
+          <input type="hidden">
+          <button>My Cheerups!</button>
+        </form></li>
+
+        <li><form action="/mylikes/">
+          <input type="hidden">
+          <button>My Liked CheerUps!</button>
+        </form></li>
+        <li><form id ="searchTag" action="/search/tag" method="get">
+          <input type="text" placeholder="Search by Tag!" name="tag">
+          <button>search</button>
+        </form></li>
+      </ul>
+    </nav>
+  <%else%>
+  <nav>
+    <ul>
+    <li><form action="/login" method="get">
+      <button>Login</button>
+    </form></li>
+    <li><form action="/session/new" method="get">
+      <button>Join CheerUps!</button>
+    </form></li>
+  </ul>
+    </nav>
+  <%end%>
+
   </header>
-    <% if logged_in?%>
-       <nav>
-         <ul>
-          <li><h3>Hi, <%= current_user.name %>!</h3></li>
-          <li><form action="/about">
-             <button>About</button>
-          </form></li>
-          <li><form action="/session" method="post">
-            <input type="hidden" name="_method" value="delete">
-            <button>Logout</button>
-          </form></li>
-          <li><form action="/cheerup/new">
-            <input type="hidden">
-            <button>Create a Cheerup!</button>
-          </form></li>
-
-          <li><form action="/mycheerups/">
-            <input type="hidden">
-            <button>My Cheerups!</button>
-          </form></li>
-
-          <li><form action="/mylikes/">
-            <input type="hidden">
-            <button>My Liked Cheerups!</button>
-          </form></li>
-          <li><form id ="searchTag" action="/search/tag" method="get">
-            <input type="text" placeholder="Search by Tag!" name="tag">
-            <button>search</button>
-          </form></li>
-        </ul>
-      </nav>
-    <%else%>
-      <form action="/session" method="post">
-        <label for="email">email</label>
-        <input type="text" name="email">
-        <label for="password">password</label>
-        <input type="password" name="password">
-        <button>Login</button>
-      </form>
-      <form action="/session/new" method="get">
-        <button>Join CheerUps!</button>
-      </form>
-    <%end%>
 
   <div id="wrapper">
     <%= yield %>

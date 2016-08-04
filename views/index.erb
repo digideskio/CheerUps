@@ -20,10 +20,7 @@
       <div class="cheerupLike">
       <form action="/cheerup/<%=cheerup.id%>/likes" method = "post">
            <input type="hidden" name ="_method" value = 'put'>
-           <!-- <h5>💚 <%= cheerup.likes.count %></h5> -->
-
            <h4><button class="likeBtn">💚</button> <%= cheerup.likes.count %></h4>
-           <!-- <h5><%= cheerup.likes.count %></h5> -->
          </form>
       </div>
   </div>

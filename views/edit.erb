@@ -1,12 +1,12 @@
 <div class="editItem">
 <form action="/cheerup/<%=@cheerup.id%>" method="post">
   <input type="hidden" name="_method" value="put">
-  <label for=""><h3>Change it up</h3></label>
+  <label for=""><h3>Change it CheerUp</h3></label>
 
   <% if @cheerup.content.present?%>
-    <input type="text" name="content" value="<%= @cheerup.content%>">
+    <input type="text" name="content" value="<%= @cheerup.content %>">
   <% else %>
-    <input type="text" name="image" value="<%= @cheerup.image%>">
+    <input type="text" name="image" value="<%= @cheerup.image %>">
   <%end%>
 
   <button>Update</button>
