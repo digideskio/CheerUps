@@ -91,7 +91,19 @@ post '/cheerup' do
   @cheerup.content = params[:content]
   @cheerup.image = params[:image]
   @cheerup.user_id = current_user.id
+  # binding.pry
+  if !@cheerup.valid?
+    # @cheerup.errors.messages.each {|msg| puts msg}
+    # return @cheerup.errors.messages[:content]
+    # @error = @cheerup.errors.messages[:content]
+    
+    return erb :errors
+    # redirect back
+  end
   @cheerup.save
+  # if @cheerup.save == false
+  #   return @cheerup.errors
+  # end
   if params[:tag] != '' #if tag is an empty string, ignore it. else, tag method
     tag
   end

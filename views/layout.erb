@@ -16,27 +16,27 @@
        <nav>
          <h3>Hi, <%= current_user.name %>!</h3>
           <form action="/session" method="post">
-          <input type="hidden" name="_method" value="delete">
-          <button>log out</button>
-      </form>
-        <form action="/cheerup/new">
-          <input type="hidden">
-          <button>Create a Cheerup!</button>
-        </form>
+            <input type="hidden" name="_method" value="delete">
+            <button>Logout</button>
+          </form>
+          <form action="/cheerup/new">
+            <input type="hidden">
+            <button>Create a Cheerup!</button>
+          </form>
 
-        <form action="/mycheerups/">
-          <input type="hidden">
-          <button>My Cheerups!</button>
-        </form>
+          <form action="/mycheerups/">
+            <input type="hidden">
+            <button>My Cheerups!</button>
+          </form>
 
-        <form action="/mylikes/">
-          <input type="hidden">
-          <button>💚 My Liked Cheerups!</button>
-        </form>
-        <form id ="searchTag" action="/search/tag" method="get">
-          <input type="text" placeholder="Search by Tag!" name="tag">
-          <button>search</button>
-        </form>
+          <form action="/mylikes/">
+            <input type="hidden">
+            <button>💚 My Liked Cheerups!</button>
+          </form>
+          <form id ="searchTag" action="/search/tag" method="get">
+            <input type="text" placeholder="Search by Tag!" name="tag">
+            <button>search</button>
+          </form>
       </nav>
     <%else%>
       <form action="/session" method="post">
@@ -44,10 +44,10 @@
         <input type="text" name="email">
         <label for="password">password</label>
         <input type="password" name="password">
-        <button>login</button>
+        <button>Login</button>
       </form>
       <form action="/session/new" method="get">
-        <button>Become a member</button>
+        <button>Join CheerUps!</button>
       </form>
     <%end%>
   <div id="wrapper">

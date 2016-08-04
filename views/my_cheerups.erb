@@ -1,16 +1,15 @@
-
-<h1>Your CheerUps!</h1>
+<h1>My CheerUps!</h1>
 
 <div class="cheerupList">
   <% @user.cheerups.shuffle.each do |cheerup| %>
     <div class="cheerupItem">
       <div class="cheerupButtons">
         <form action="/cheerup/edit/<%=cheerup.id%>" method="get">
-          <button>edit</button>
+          <button class="smallBtn">edit</button>
         </form>
         <form action="/cheerup/<%=cheerup.id%>" method="post">
           <input type="hidden" name="_method" value="delete">
-          <button>delete</button>
+          <button class="smallBtn">delete</button>
         </form>
       </div>
       <%if cheerup.content == '' || cheerup.content == nil%>

@@ -1,4 +1,4 @@
-<h1>My Favorite Cheerups</h1>
+<h1>My Liked CheerUps</h1>
 
 <div class="cheerupList">
   <%@user.likes.each do |like|  %>
@@ -9,26 +9,26 @@
           <div class="cheerupContent">
             <h2><%=cheerup.content%></h2>
           </div>
-        <% elsif cheerup.content == '' || cheerup.content == nil%>
+        <% else%>
           <div class="cheerupContent">
             <img src="<%= cheerup.image %>"></img>
         </div>
       <% end %>
       <div class="cheerupDeets">
         <div class="cheerupTag">
-        <% cheerup.tags.each do |tag| %>
-          <a href="/search/tag?tag=<%=tag.theme%>"><i class="fa fa-tags" aria-hidden="true"></i><%=tag.theme%></a>
-        <%end%>
+          <% cheerup.tags.each do |tag| %>
+            <a href="/search/tag?tag=<%=tag.theme%>"><i class="fa fa-tags" aria-hidden="true"></i><%=tag.theme%></a>
+          <%end%>
         </div>
         <div class="cheerupLike">
           <form action="/cheerup/<%=cheerup.id%>/likes" method = "post">
             <input type="hidden" name ="_method" value = 'put'>
             <h5>💚 <%= cheerup.likes.count %></h5>
-            <button onclick = "this.style.backgroundColor='blue' ">Like</button>
+            <button >Like</button>
           </form>
         </div>
       </div>
-    <%end%>
     </div>
+    <% end %>
   <%end%>
 </div>
