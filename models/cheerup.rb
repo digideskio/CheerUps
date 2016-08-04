@@ -17,8 +17,6 @@ class Cheerup < ActiveRecord::Base
    # validates :image, presence: true, unless: user.content.present?
    # validate :content_or_image
 
-
-
 def content_or_image
   if content.present? && image.present? #, but not both
     errors.add(:content, "Oops you forgot to populate your CheerUp!")
@@ -30,7 +28,7 @@ def content_or_image
 end
 
 def too_long
-  if (content.length > 140)
+  if (!image.present? && content.length > 140)
     errors.add(:content, "message must be between 1-140 characters")
   end
 end

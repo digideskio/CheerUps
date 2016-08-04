@@ -1,4 +1,4 @@
-<h1><%=@tag.theme%></h1>
+<h1><%=@tag.theme.capitalize%> CheerUps!</h1>
 
 <div class="tagList">
   <% @tag.cheerups.each do |cheerup| %>
@@ -15,9 +15,10 @@
       <div class="cheerupLike">
         <form action="/cheerup/<%=cheerup.id%>/likes" method = "post">
            <input type="hidden" name ="_method" value = 'put'>
-           <h5>💚 <%= cheerup.likes.count %></h5>
+           <!-- <h5>💚 <%= cheerup.likes.count %></h5>
 
-           <button onclick = "this.style.backgroundColor='blue' ">Like</button>
+           <button class="likeBtn">Like</button> -->
+            <h4><button class="likeBtn">💚</button> <%= cheerup.likes.count %></h4>
          </form>
       </div>
 

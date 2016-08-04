@@ -1,10 +1,4 @@
 
-<!-- <form action="/search/tag" method="get">
-  <input type="text" placeholder="Search by Tag!" name="tag">
-  <button>search</button>
-</form> -->
-
-
 <div class = "cheerupList">
 <% @cheerup.each do |cheerup|  %>
   <div class="cheerupItem">
@@ -26,9 +20,10 @@
       <div class="cheerupLike">
       <form action="/cheerup/<%=cheerup.id%>/likes" method = "post">
            <input type="hidden" name ="_method" value = 'put'>
-           <h5>💚 <%= cheerup.likes.count %></h5>
+           <!-- <h5>💚 <%= cheerup.likes.count %></h5> -->
 
-           <button onclick = "this.style.backgroundColor='blue' ">Like</button>
+           <h4><button class="likeBtn">💚</button> <%= cheerup.likes.count %></h4>
+           <!-- <h5><%= cheerup.likes.count %></h5> -->
          </form>
       </div>
   </div>

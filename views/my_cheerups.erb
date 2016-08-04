@@ -27,6 +27,13 @@
           <a href="/search/tag?tag=<%=tag.theme%>"><i class="fa fa-tags" aria-hidden="true"></i><%=tag.theme%></a>
           <%end%>
         </div>
+        <div class="cheerupLike">
+        <form action="/cheerup/<%=cheerup.id%>/likes" method = "post">
+             <input type="hidden" name ="_method" value = 'put'>
+              <h4><button class="likeBtn">💚</button> <%= cheerup.likes.count %></h4>
+
+           </form>
+        </div>
       </div>
     </div>
   <%end%>

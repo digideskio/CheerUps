@@ -1,14 +1,11 @@
-<p>Note: Maximum of 140 characters</p>
-<form action="/cheerup" method="post">
-  <label for="content">Write a Cheerup...</label>
+
+<form class="newCheerupForm" action="/cheerup" method="post">
+  <label for="content"><h2>Write your CheerUp!</h2></label>
+  <p>Note: Maximum of 140 characters</p>
   <input type="text" name="content">
 
   <label for="tag">Tag it!</label>
-  <input type="text" name="tag">
+  <input type="text" name="tag" placeholder="Use popular tags like 'Monday' or 'Perspective', or start a new tag!">
 
-  <button>Create</button>
+  <button class="btn">Create</button>
 </form>
-
-<!-- <% if @error != [] %>
-<p><%= @error %></p>
-<%end %> -->

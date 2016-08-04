@@ -24,7 +24,6 @@ helpers do
   def current_user
     User.find(session[:user_id])
   end
-#tag test for already existing tag, if not creates it and appends to @cheerup.tags
 
   def tag
   @tag = Tag.find_by(theme: params[:tag].downcase)
@@ -96,7 +95,7 @@ post '/cheerup' do
     # @cheerup.errors.messages.each {|msg| puts msg}
     # return @cheerup.errors.messages[:content]
     # @error = @cheerup.errors.messages[:content]
-    
+
     return erb :errors
     # redirect back
   end
@@ -110,7 +109,8 @@ post '/cheerup' do
   erb :display
 end
 
-put '/addtag/:cheerup_id' do
+put "/addtag/:cheerup_id" do
+  # binding.pry
   params[:tag]
   @cheerup = Cheerup.find(params[:cheerup_id])
   #Prohibits each cheerup from duplicate tags
@@ -118,7 +118,7 @@ put '/addtag/:cheerup_id' do
   else
     tag
   end
-  erb :display
+  redirect '/mycheerups/'
 end
 
 get '/search/tag' do
@@ -181,4 +181,8 @@ put "/cheerup/:id/likes" do
   end
  end
  redirect back
+end
+
+get '/about' do
+  return erb :about
 end

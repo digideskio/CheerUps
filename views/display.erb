@@ -1,24 +1,32 @@
-<div id="displayCheerup">
+<h1>Preview</h1>
 
+<h3>Thanks for making contributing to CheerUps!</h3>
+
+  <div class="displayItem">
   <%if @cheerup.content.present?%>
-    <h2><%=@cheerup.content%></h2>
-  <%else %>
-    <img src="<%=@cheerup.image%>" alt="">
-  <%end%>
 
-    <form action="/addtag/<%=@cheerup.id%>" method="post">
-      <input type="hidden" name="_method" value="put">
-
-      <input type="text" name="tag" placeholder="add a tag!">
-      <button>tag it!</button>
-    </form>
-
+      <div class="displayContent">
+        <h2><%=@cheerup.content%></h2>
+      </div>
+    <%else %>
+      <div class="displayContent">
+        <img src="<%=@cheerup.image%>" alt="">
+      </div>
+    <%end%>
+      <div class="displayDeets">
+        <div class="displayTag">
       <% @cheerup.tags.each do |tag|  %>
-      <button><%= tag["theme"] %></button>
+      <a href="/search/tag?tag=<%=tag.theme%>"><i class="fa fa-tags" aria-hidden="true"></i><%=tag["theme"]%></a>
       <%end%>
+        </div>
+    </div>
+    <!-- <div class="editTags">
+      <form action="/addtag/<%=@cheerup.id%>" method="post">
+        <input type="hidden" name="_method" value="put">
+        <input type="text" name="tag" placeholder="Add another tag!">
+        <button>Add this tag</button>
+      </form>
+  </div> -->
+  </div>
 
-</div>
-
-<form action="/">
-  <button>Back to homepage</button>
-</form>
+  <h3>You may edit or add tags to your CheerUp from the My CheerUps! page.</h3>
