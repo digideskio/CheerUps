@@ -23,4 +23,3 @@
 - Option for any user to add tags to other users' CheerUps
 - User ranking system
 
-![image](Users/maggiemccain/Desktop/wireframe_cheerup.jpg) "Logo Title Text 2"
