@@ -23,4 +23,4 @@
 - Option for any user to add tags to other users' CheerUps
 - User ranking system
 
-[wirefram]: Users/maggiemccain/Desktop/wirefram_cheerup.jpg "Logo Title Text 2"
+[wireframe]:Users/maggiemccain/Desktop/wirefram_cheerup.jpg "Logo Title Text 2"
