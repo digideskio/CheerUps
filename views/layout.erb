@@ -15,7 +15,7 @@
   <% if logged_in?%>
      <nav>
        <ul>
-        <li><h3>Hi, <%= current_user.name %>!</h3></li>
+        <li><h3 id="greeting">Hi, <%= current_user.name %>!</h3></li>
         <li><form action="/about">
            <button>About</button>
         </form></li>
@@ -61,4 +61,12 @@
   <div id="wrapper">
     <%= yield %>
   </div>
+
+  <footer>
+    <ul>
+      <li>&copy; Maggie McCain</li>
+      <li><img src="https://pbs.twimg.com/profile_images/1854751598/happy_logo_400x400.png" alt=""></li>
+      <li>General Assembly Project</li>
+    </ul>
+  </footer>
 </body>
